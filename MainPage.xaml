@@ -1,0 +1,73 @@
+﻿<Page
+    x:Class="RGBNeuNetApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RGBNeuNetApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="wideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="641" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="narrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="contentPanel.Margin" Value="20,30,0,0"/>
+                        <Setter Target="RBox.Orientation" Value="Vertical"/>
+                        <Setter Target="GBox.Orientation" Value="Vertical"/>
+                        <Setter Target="BBox.Orientation" Value="Vertical"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <MenuBar Margin="10,10,-10,0" VerticalAlignment="Top">
+            <MenuBarItem Title="File">
+                <MenuFlyoutItem Name="NewFile" Text="New"/>
+                <MenuFlyoutItem Name="OpenFile" Text="Open..."/>
+                <MenuFlyoutItem Name="SaveFile" Text="Save"/>
+                <MenuFlyoutSeparator />
+                <MenuFlyoutItem Name="ExitProgram" Text="Exit"/>
+            </MenuBarItem>
+
+            <!--<MenuBarItem Title="Edit">
+                <MenuFlyoutItem Text="Undo"/>
+                <MenuFlyoutItem Text="Cut"/>
+                <MenuFlyoutItem Text="Copy"/>
+                <MenuFlyoutItem Text="Paste"/>
+            </MenuBarItem>
+
+            <MenuBarItem Title="Help">
+                <MenuFlyoutItem Text="About"/>
+            </MenuBarItem>-->
+        </MenuBar>
+
+        <StackPanel Name="contentPanel" HorizontalAlignment="Left" Height="118" Margin="70,267,0,0" VerticalAlignment="Top" Width="164">
+            <TextBox Name="RBox" Text="TextBox" HorizontalAlignment="Stretch" Margin="0,0,0,10" VerticalAlignment="Stretch"/>
+            <TextBox Name="GBox" Text="TextBox" HorizontalAlignment="Stretch" Margin="0,0,0,10" VerticalAlignment="Stretch"/>
+            <TextBox Name="BBox" Text="TextBox" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="28" Margin="568,312,0,0" VerticalAlignment="Top" Width="100">
+            <TextBlock Name="OutTBlock" Text="TextBlock" TextWrapping="Wrap"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="58" Margin="781,297,0,0" VerticalAlignment="Top" Width="117">
+            <TextBlock Text="Expected result:" TextWrapping="Wrap" SelectionChanged="TextBlock_SelectionChanged"/>
+            <TextBlock Name="ExpectedTBlock" Text="TextBlock" TextWrapping="Wrap"/>
+        </StackPanel>
+        <Rectangle Name="OutColor" HorizontalAlignment="Left" Height="100" Margin="781,120,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Name="CalcButton" Content="Calculate" HorizontalAlignment="Left" Margin="638,494,0,0" VerticalAlignment="Top" Click="CalcButton_Click"/>
+        <Button Name="SingleCalcButton" Content="Calculate Single" HorizontalAlignment="Left" Margin="745,494,0,0" VerticalAlignment="Top" Click="SingleCalcButton_Click"/>
+        <TextBox Name="NumPasses" HorizontalAlignment="Left" Margin="478,494,0,0" Text="1000" VerticalAlignment="Top" Width="107"/>
+        <TextBlock HorizontalAlignment="Left" Margin="340,500,0,0" Text="Number of Passes:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+    </Grid>
+</Page>
